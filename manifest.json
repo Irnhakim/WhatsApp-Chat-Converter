@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "WhatsApp Chat Converter",
+  "version": "1.0",
+  "author": "Irnhakim",
+  "description": "Easily toggle WhatsApp Web messages between incoming and outgoing.",
+  "permissions": [
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://web.whatsapp.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

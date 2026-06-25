@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Chat Converter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      --accent-color: #00a884;
+      --accent-hover: #008f70;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 320px;
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-container {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #00a884 0%, #00e676 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0, 168, 132, 0.35);
+    }
+
+    .logo-svg {
+      width: 24px;
+      height: 24px;
+      fill: #ffffff;
+    }
+
+    .title-wrapper h1 {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      background: linear-gradient(120deg, #ffffff, #a7f3d0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .title-wrapper p {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-text {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-badge.off {
+      background-color: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .status-badge.on {
+      background-color: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.1);
+    }
+
+    /* Modern Switch Switch Container */
+    .switch-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 12px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .switch-container:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(0, 168, 132, 0.25);
+    }
+
+    .switch-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: #e2e8f0;
+    }
+
+    /* Switch Style */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #475569;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent-color);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(24px);
+    }
+
+    .instructions {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      padding: 0 4px;
+    }
+
+    .instructions ol {
+      margin-left: 14px;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo-container">
+        <svg class="logo-svg" viewBox="0 0 24 24">
+          <path d="M12.031 2c-5.514 0-10 4.486-10 10 0 1.83.498 3.546 1.362 5.027l-1.393 5.093 5.218-1.369c1.42.793 3.037 1.25 4.813 1.25 5.514 0 10-4.486 10-10 0-5.514-4.486-10-10-10zm0 18c-1.637 0-3.13-.483-4.385-1.311l-.315-.208-3.088.81.825-3.018-.228-.363c-.886-1.411-1.394-3.092-1.394-4.91 0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
+        </svg>
+      </div>
+      <div class="title-wrapper">
+        <h1>WA Chat Converter</h1>
+        <p>Toggle incoming/outgoing message styles</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="status-row">
+        <span class="status-text">Selection Mode</span>
+        <span id="statusBadge" class="status-badge off">Disabled</span>
+      </div>
+
+      <div class="switch-container" id="toggleContainer">
+        <span class="switch-label">Enable Inspector</span>
+        <label class="switch">
+          <input type="checkbox" id="toggleSelection">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="instructions">
+        <strong>How to Use:</strong>
+        <ol>
+          <li>Enable the selection mode above.</li>
+          <li>Hover and click on any chat bubble on WhatsApp Web.</li>
+          <li>Select the chat type from the popup menu.</li>
+          <li>Press <strong>ESC</strong> to deactivate selection mode.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="footer">
+      WhatsApp Chat Converter &copy; 2026<br>
+      Created by <a href="https://github.com/Irnhakim" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: 600;">Irnhakim</a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

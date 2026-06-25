@@ -1,0 +1,222 @@
+/* Highlight effect during selection mode */
+.wa-converter-selectable {
+  transition: all 0.2s ease-in-out;
+  cursor: pointer !important;
+}
+
+.wa-converter-selectable:hover {
+  outline: 2px dashed #00a884 !important;
+  outline-offset: -2px !important;
+  background-color: rgba(0, 168, 132, 0.08) !important;
+}
+
+/* Floating Menu Style */
+.wa-converter-menu {
+  position: absolute;
+  z-index: 10000;
+  background-color: var(--dropdown-background, #233138);
+  border: 1px solid var(--border-strong, #374248);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 6px 0;
+  min-width: 160px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  animation: waMenuFadeIn 0.15s ease-out;
+}
+
+@keyframes waMenuFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.wa-converter-menu-item {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--primary-strong, #e9edef);
+  cursor: pointer;
+  transition: background-color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.wa-converter-menu-item:hover {
+  background-color: var(--background-default-hover, #182229);
+}
+
+.wa-converter-menu-item.cancel {
+  border-top: 1px solid var(--border-strong, #374248);
+  color: var(--panel-header-icon, #8696a0);
+}
+
+/* WhatsApp Message Overrides */
+
+/* --- FORCE INCOMING --- */
+[data-wa-type="in"] {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  align-self: flex-start !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+[data-wa-type="in"] > div,
+[data-wa-type="in"] .x78zum5 {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+[data-wa-type="in"] [data-testid="msg-container"],
+[data-wa-type="in"] [data-testid="msg-container"] > div {
+  background-color: var(--incoming-msg-bg, #202c33) !important;
+  border-radius: 8px !important;
+  color: var(--message-primary, #e9edef) !important;
+}
+
+/* Hide outgoing status icons / ticks in incoming messages */
+[data-wa-type="in"] [data-testid="msg-meta"] svg,
+[data-wa-type="in"] .xhslqc4 {
+  display: none !important;
+}
+
+/* Hide native tails completely to avoid overlap */
+[data-wa-type] [data-testid="tail-out"],
+[data-wa-type] [data-testid="tail-in"] {
+  display: none !important;
+}
+
+/* Hide sender's profile picture / avatar container on outgoing message rows */
+div:has(> div > [role="row"] > [data-wa-type="out"]) > div:has([data-testid="group-chat-profile-picture"]),
+div:has(> div > [role="row"] > [data-wa-type="out"]) > .x16ye13r,
+.x1n2onr6:has([data-wa-type="out"]) > .x16ye13r {
+  display: none !important;
+  width: 0 !important;
+  margin: 0 !important;
+}
+
+/* --- FORCE INCOMING --- */
+[data-wa-type="in"] {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  align-self: flex-start !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+[data-wa-type="in"] > div,
+[data-wa-type="in"] .x78zum5 {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+[data-wa-type="in"] [data-testid="msg-container"] {
+  background-color: var(--incoming-msg-bg, #202c33) !important;
+  border-radius: 0 8px 8px 8px !important; /* Top-left is 0 for tail */
+  color: var(--message-primary, #e9edef) !important;
+  position: relative !important;
+}
+
+[data-wa-type="in"] [data-testid="msg-container"] > div {
+  background-color: var(--incoming-msg-bg, #202c33) !important;
+  border-radius: 0 8px 8px 8px !important;
+}
+
+/* Custom CSS Tail-In */
+[data-wa-type="in"] [data-testid="msg-container"]::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -8px !important;
+  width: 8px !important;
+  height: 13px !important;
+  background-color: var(--incoming-msg-bg, #202c33) !important;
+  clip-path: polygon(100% 0, 100% 100%, 0 0) !important;
+  z-index: 10 !important;
+}
+
+/* Hide outgoing status icons / ticks in incoming messages */
+[data-wa-type="in"] [data-testid="msg-meta"] svg,
+[data-wa-type="in"] .xhslqc4 {
+  display: none !important;
+}
+
+/* --- FORCE OUTGOING --- */
+[data-wa-type="out"] {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+  align-self: flex-end !important;
+  align-items: flex-end !important;
+  justify-content: flex-end !important;
+}
+
+[data-wa-type="out"] > div,
+[data-wa-type="out"] .x78zum5 {
+  justify-content: flex-end !important;
+  align-items: flex-end !important;
+}
+
+[data-wa-type="out"] [data-testid="msg-container"] {
+  background-color: var(--outgoing-msg-bg, #005c4b) !important;
+  border-radius: 8px 0 8px 8px !important; /* Top-right is 0 for tail */
+  color: var(--message-primary, #e9edef) !important;
+  position: relative !important;
+}
+
+[data-wa-type="out"] [data-testid="msg-container"] > div {
+  background-color: var(--outgoing-msg-bg, #005c4b) !important;
+  border-radius: 8px 0 8px 8px !important;
+}
+
+/* Custom CSS Tail-Out */
+[data-wa-type="out"] [data-testid="msg-container"]::after {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  right: -8px !important;
+  width: 8px !important;
+  height: 13px !important;
+  background-color: var(--outgoing-msg-bg, #005c4b) !important;
+  clip-path: polygon(0 0, 100% 0, 0 100%) !important;
+  z-index: 10 !important;
+}
+
+/* Hide main author names/number when converting to outgoing, but preserve them inside quoted replies */
+[data-wa-type="out"] [data-testid="author"]:not([data-testid="quoted-message"] *),
+[data-wa-type="out"] [testid="author"]:not([data-testid="quoted-message"] *),
+[data-wa-type="out"] .x19v9tvf:not([data-testid="quoted-message"] *) {
+  display: none !important;
+}
+
+/* Ensure ticks are shown or hidden accordingly */
+[data-wa-type="out"] [data-testid="msg-meta"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+}
+
+/* --- QUOTED MESSAGE OVERRIDES FOR OUTGOING CHATS --- */
+/* Accent bar color on the left of quoted message (Teal for outgoing) */
+[data-wa-type="out"] [data-testid="quoted-message"] span {
+  border-left-color: #00a884 !important;
+}
+
+[data-wa-type="out"] [data-testid="quoted-message"] span[class*="x2lah0s"] {
+  background-color: #00a884 !important;
+}
+
+/* Author text color in quoted message (Teal for outgoing) */
+[data-wa-type="out"] [data-testid="quoted-message"] [data-testid="author"] {
+  color: #00a884 !important;
+}
+
+/* Quoted message background (slightly darker transparent black over green) */
+[data-wa-type="out"] [data-testid="quoted-message"] > div {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+
